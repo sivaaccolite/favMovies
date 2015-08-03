@@ -1,0 +1,45 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<!-- <header class="hero-unit" id="banner">
+  <div class="container">
+    <h3>Movie List</h1>
+  </div>
+</header> -->
+<div class="container">
+    <div class="row">
+        <h3>Movie List</h3>
+        <span> Limit number of movies: </span>
+        <select ng-model="model.movieCountToShow" ng-options="countToShow for countToShow in model.distinctCounts">
+        </select>&nbsp; | &nbsp;
+        <span> County: </span>
+        <select ng-model="model.countryToShow" ng-options="countryToShow for countryToShow in model.distinctCountries">
+        </select>
+        <hr>
+    </div>
+    <div class="row portfolio">
+        <div class="col-lg-2 col-sm-3 col-xs-4" ng-repeat="movie in model.movieList | filter: { Country: model.countryToShow } | limitTo:model.movieCountToShow">
+            <div class="image">
+                <a href="details/{{movie.imdbID}}"><img itemprop="image" class="pri_image" alt="{{movie.Plot}}" title="{{movie.Plot}}" src="{{movie.Poster}}"></a>
+                <div class="favourite pull-right" ng-click="toggleFavourite(movie)">
+                    <span ng-show="movie.favourite" class="glyphicon glyphicon-heart" style="color: red"></span>
+                    <span ng-hide="movie.favourite" class="glyphicon glyphicon-heart-empty" style="color: black"></span>
+                </div>
+                <div class="caption_overlay">
+                    <div class="primary">
+                        <div class="onoverflow"> {{movie.Title | limitTo:20}} </div>
+                    </div>
+                    <div class="secondary ellipsis"> 
+                        <span class="glyphicon glyphicon-star-empty">{{movie.imdbRating}}<span>
+                        <span class="pull-right"> &nbsp; &nbsp;{{movie.Year}}<span>
+                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<footer class="footer">
+    <div class="container">
+        <p>Angular Training App |
+            <a href="hub.accolite.com/AU">AU</a></p>
+    </div>
+</footer>
